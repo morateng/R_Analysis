@@ -1,0 +1,2 @@
+
+ingridient <- c("햄",)

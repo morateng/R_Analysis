@@ -74,4 +74,16 @@ indexVec[3:1]
 
 indexVec[indexVec < 4]
 
+v5 <- rep(1, time = 5) # 1을 5번 반복
+v5
+
+v7 <- rep(c("a", "b", "c"), each=3)  # 각 요소를 3번 반복
+v7
+
+v6 <- rep(c("a", "b", "c"), time=3)
+v6
+
+
+score <- c(90, 85, 70)
+names(score) <- c()
 

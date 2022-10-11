@@ -55,3 +55,4 @@ missingTable1$gpa[is.na(missingTable1$gpa)] <- mean(missingTable1$gpa, na.rm = T
 print(missingTable1)
 
 
+

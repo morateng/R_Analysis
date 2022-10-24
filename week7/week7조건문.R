@@ -51,7 +51,9 @@ if (applePrice < 5000 & pearPrice <5000) {
   print("둘중 하나만 사야겠다..")
 }
 
+score <- 85
+ifelse(score >= 80, "a", "b")
 
 
-
-
+score <- c(78, 95, 85, 65)
+ifelse(score >= 80, "우수", "노력")

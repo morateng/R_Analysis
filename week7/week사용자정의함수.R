@@ -28,4 +28,15 @@ presetFunc <- function(value1=1, value2=2){
 
 presetFunc()
 
+fib <- function(n){
+  if(n==1 & n==2){
+    print(1)
+  }else{
+    return(fib(n-1)+fib(n-2))
+  }
+}
+
+fib(2)
+  
+
 

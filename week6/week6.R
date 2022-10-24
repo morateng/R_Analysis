@@ -9,6 +9,8 @@ patientDF_col <- read.csv("patientDF_col.csv", header = TRUE, fileEncoding = "CP
 
 patientDF
 
+rename(patientDF, gender = jender)
+
 filter(patientDF, weight >= 55)
 
 select(patientDF, weight, height)

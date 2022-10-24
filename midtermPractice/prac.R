@@ -104,3 +104,13 @@ print(patDF_name)
 patDF[1,1]
 patDF[3,2]
 
+name <-c("Potter", "Elsa", "Gates", "Wendy", "Ben")
+math <- c(85, 76, 99, 88, 67)
+
+df <- data.frame(name, math)
+library(dplyr)
+select(df, math>=80)
+head(df, 3)
+
+hello <- "안녕하세요요"
+print(hello)

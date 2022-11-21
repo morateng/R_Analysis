@@ -61,3 +61,60 @@ text(state$Income, state$Life.Exp,
      col = "brown")
 
 
+# ----
+
+data(mtcars)
+
+mosaicplot(~gear+vs,
+           data = mtcars)
+head(mtcars)
+
+mosaicplot(~gear+vs,
+           data = mtcars,
+           color = TRUE,     # 진하게
+           main = "Gear & Vs")
+
+# 실습 3
+
+data(mtcars)
+mosaicplot(~gear+am,
+           data = mtcars,
+           color = TRUE,
+           main = "Gear & Transmission")
+# --------
+
+library(ggplot2)
+month <- c(1, 2, 3, 4, 5, 6)
+weight <- c(40, 48, 47, 45, 43, 39)
+df <- data.frame(month, weight)
+
+ggplot(data=df, aes(x = month, y = weight)) + geom_bar(stat = "identity", width = 0.8, fill = "steelblue")
+#막대 높이, 막대 폭, 막대 색상 지정하여 그래프 생성
+
+
+head(Orange)
+
+ggplot(data = Orange, aes(x = age, y = circumference)) + geom_line(aes(color = Tree), linetype = 5, size = 3)
+
+# 실습 4
+data(Loblolly)
+head(Loblolly)
+ggplot(data = Loblolly, aes(x = age, y = height)) + geom_line(aes(color = Seed), linetype = 1, size =1)
+
+
+
+# 산점도
+data(mtcars)
+library(ggplot2)
+ggplot(data = mtcars, aes(x = hp, y = mpg)) + geom_point(aes(color = as.factor(vs)))
+
+# 실습 5
+library(ggplot2)
+data(diamonds)
+diamonds <- head(diamonds, 100)
+ggplot(data=diamonds, aes(x = carat, y = price)) + geom_point(aes(color = as.factor(cut)))
+#-----
+
+# 상자 그래프
+
+ggplot(data = mtcars, aes(y = hp)) + geom_boxplot(aes(fill = as.factor(cyl)))

@@ -118,3 +118,17 @@ ggplot(data=diamonds, aes(x = carat, y = price)) + geom_point(aes(color = as.fac
 # 상자 그래프
 
 ggplot(data = mtcars, aes(y = hp)) + geom_boxplot(aes(fill = as.factor(cyl)))
+
+
+
+# 차원 축소
+library(Rtsne)
+library(ggplot2)
+library(survival)
+cancer <- gbsg[, c("age", "size", "grade", "nodes")] #gbsg 데이터셋 중 필요한 열만 추출
+grade <- cancer$grade #grade 열 추출
+#4차원 데이터를 2차원으로 축소하기
+tsne <- Rtsne(cancer, dim = 2, perplexity = 10, check_duplicates = FALSE)
+#차원축소 결과 시각화
+tsneDF <- data.frame(tsne$Y)
+ggplot(data=tsneDF, aes(x=X1, y=X2, color = grade)) + geom_point(size = 2)

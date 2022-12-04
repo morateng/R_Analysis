@@ -219,13 +219,26 @@ plot(years,
      korea_cars,
      main = "전기차 합계 추이",
      type = "b",
-     lwd=1)
+     lwd=1,
+     col="red")
 
 korea_charges <- result[18, 4:6]
 plot(years,
      korea_charges,
      main = "충전소 합계 추이",
      type = "b",
-     lwd = 1)
+     lwd = 1,
+     col="blue")
+
+# result 데이터프레임에 충전소/전기차대수 열 추가
+
+result<-mutate(result, 전기차충전소비율 = X2021_charge/X2021_cars)
+result
+
+View(result)
+
+barplot(result$전기차충전소비율, names = c("서울","인천","경기","강원","충북","충남","대전","세종","경북","대구","전북","전남",
+                                   "광주","경남","부산","울산","제주","합계"),
+        main = "전국 충전소개수/전기차대수 비율")
 
 

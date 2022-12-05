@@ -11,6 +11,6 @@ b <- coef(linearregression)[1]
 w <- coef(linearregression)[2]
 
 equation <- w*2.7 + b
-print(equation)
+print(equation)git
 
 summary(linearregression)

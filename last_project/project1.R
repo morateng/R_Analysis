@@ -39,8 +39,6 @@ head(electric_car, 3)
 head(charge_station)
 
 
-electric_car[39, ] = electric_car[38, ]
-
 
 dim(electric_car)
 electric_car <- t(electric_car)
@@ -143,6 +141,8 @@ result <- rename(result, X2020_charge = X2020...6)
 result <- rename(result, X2021_charge = X2021...7)
 result
 
+
+
 electric_car_years <- rename(electric_car_years, X2019_cars = X_2019_cars)
 electric_car_years <- rename(electric_car_years, X2020_cars = X_2020_cars)
 electric_car_years <- rename(electric_car_years, X2021_cars = X2021)
@@ -158,6 +158,7 @@ summary(result)
 # 선 그래프
 electric_car_years
 charge_station
+
 
 years <- c(2019,2020,2021)
 plot(result$X2019_cars)
@@ -205,6 +206,8 @@ plot(years,
      type = "b",
      lwd=1,
      col="red")
+View(korea_cars)
+
 
 korea_charges <- result[18, 4:6]
 plot(years,
@@ -213,6 +216,34 @@ plot(years,
      type = "b",
      lwd = 1,
      col="blue")
+
+View(korea_charges)
+
+# 선형회귀로 2022 전기차 대수 예측
+korea_cars <- t(korea_cars)
+
+model_years <- data.frame(years)
+korea_cars <- bind_cols(korea_cars, model_years)
+cars_model <- lm(합계~years, data = korea_cars)
+
+w <- coef(cars_model)[2]
+b <- coef(cars_model)[1]
+
+X2022_cars <- w*2022+b
+print(X2022_cars)
+
+# 선형회귀로 2022 충전소수 예측
+korea_charges <- t(korea_charges)
+korea_charges <- bind_cols(korea_charges, model_years)
+charge_model <- lm(합계~years, data = korea_charges)
+
+w1 <- coef(charge_model)[2]
+b1 <- coef(charge_model)[1]
+
+X2022_charges <- w1*2022 + b1
+print(X2022_charges)
+
+
 
 # result 데이터프레임에 충전소/전기차대수 열 추가
 
@@ -225,4 +256,22 @@ barplot(result$전기차충전소비율, names = c("서울","인천","경기","�
                                    "광주","경남","부산","울산","제주","합계"),
         main = "전국 충전소개수/전기차대수 비율")
 
+
+# 트리맵 그리기
+library(treemap)
+treemap1 <- result[1:17, ]
+View(treemap1)
+index <- c("서울","인천","경기","강원","충북","충남","대전","세종","경북","대구","전북","전남",
+           "광주","경남","부산","울산","제주")
+index <- data.frame(index)
+
+treemap1<- bind_cols(treemap1, index)
+View(treemap1)
+
+treemap(treemap1,
+        index = c("index"),
+        vSize = "X2021_cars",
+        vColor = "X2021_charge",
+        type = "value",
+        title = "2021전국 전기차대수, 충전소 treemap")
 

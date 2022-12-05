@@ -23,10 +23,11 @@ print(a)
 plot(years, a)
 lines(years, a, type = "b")
 
+library(dplyr)
 is.na(charge_station)
 is.na(electric_car)
 
-library(dplyr)
+
 
 electric_car <- t(electric_car)
 head(electric_car)
@@ -37,31 +38,16 @@ str(electric_car)
 head(electric_car, 3)
 head(charge_station)
 
-electric_car <- t(electric_car)
-View(electric_car)
 
 electric_car[39, ] = electric_car[38, ]
 
-electric_car <- t(electric_car)
-head(electric_car)
-electric_car[1,]
-electric_car[,1]
-
-electric_car <- t(electric_car)
-View(electric_car)
 
 dim(electric_car)
 electric_car <- t(electric_car)
 names(electric_car) <- c("X2022_3","X2022_2","X2022_1","X2021_12","X2021_11","X2021_10","X2021_9","X2021_8","X2021_7","X2021_6","X2021_5","X2021_4","X2021_3","X2021_2","X2021_1","X2020_12","X2020_11",
                         "X2020_10","X2020_9","X2020_8","X2020_7","X2020_6","X2020_5","X2020_4","X2020_3","X2020_2","X2020_1","X2019_12","X2019_10","X2019_9","X2019_8","X2019_7",
                         "X2019_6","X2019_5","X2019_4","X2019_3","X2019_2","X2019_1")
-head(electric_car)
-View(electric_car)
-electric_car <- t(electric_car)
 
-
-charge_station <- t(charge_station)
-electric_car <- t(electric_car)
 electric_car<-electric_car[-1,]    # 가장 위의 행 삭제
 electric_car
 
@@ -120,9 +106,7 @@ electric_car_years<-electric_car_years[, c(3,2,1)]
 electric_car_years
 View(electric_car_years)
 
-charge_station <- charge_station[, -c(1:3)]
-charge_station
-View(charge_station)
+
 charge_station <- read.csv("charging_station.csv", header = TRUE)
 charge_station
 View(charge_station)
